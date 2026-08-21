@@ -5,9 +5,8 @@
  * Framework: Laravel 12
  * File: database/migrations/2026_08_19_000100_create_marine_core_tables.php
  * Date: 2026-08-19
- * Copyright:
- *   Copyright (c) 2026 Tocsin Data / Global Incident Map.
- *   All rights reserved.
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (c) 2026 Tocsin Data.
  */
 
 use Illuminate\Database\Migrations\Migration;

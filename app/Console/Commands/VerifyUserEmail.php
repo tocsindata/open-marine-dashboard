@@ -5,9 +5,8 @@
  * Framework: Laravel 12
  * File: app/Console/Commands/VerifyUserEmail.php
  * Date: 2026-08-19
- * Copyright:
- *   Copyright (c) 2026 Tocsin Data / Global Incident Map.
- *   All rights reserved.
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * Copyright (c) 2026 Tocsin Data.
  */
 
 namespace App\Console\Commands;
