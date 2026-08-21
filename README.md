@@ -2,6 +2,8 @@
 
 Open Marine Dashboard is an open-source Laravel 12 application for private, per-user vessel operations. It provides vessel and equipment records, maintenance schedules and reminders, tasks, weather and marine-condition context, safety-alert layers, and supplementary navigation-planning tools.
 
+![Open Marine Dashboard production interface](marine.png)
+
 This public repository is a sanitized source release derived from the production Marine project. It contains no production configuration, credentials, user data, deployment history, or private operational documentation.
 
 ## Capabilities
