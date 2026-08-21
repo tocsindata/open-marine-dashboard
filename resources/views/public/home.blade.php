@@ -1,0 +1,5 @@
+@extends('layouts.app', ['title' => 'Marine operations for boaters'])
+@section('content')
+<section class="hero"><p class="eyebrow">West coast Canada · privacy first</p><h1>Your vessel records and voyage work, in one calm place.</h1><p>Marine helps boaters organize vessels, maintenance, tasks, documents, costs, voyages, and source-aware marine information. The service is free and contains no premium locks or advertisements.</p><div class="actions"><a class="button" href="{{ route('register') }}">Register free</a><a href="{{ route('public.safety') }}">Read the safety limits</a></div></section>
+<section class="grid"><article><h2>Private by default</h2><p>Vessel and account records are scoped to you. Location tracking remains off until deliberately enabled.</p></article><article><h2>Honest source state</h2><p>Operational feeds must be approved and display provenance and freshness. Unavailable information stays visibly unavailable.</p></article><article><h2>Useful without feeds</h2><p>Manual records, vessels, and tasks continue to work when external services are delayed or disabled.</p></article></section>
+@endsection

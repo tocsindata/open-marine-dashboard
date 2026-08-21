@@ -1,0 +1,14 @@
+@extends('layouts.app', ['title' => 'Dashboard'])
+@section('content')
+<div class="appbar"><div><p class="eyebrow">Operations</p><h1>Dashboard</h1></div><nav><a href="{{ route('navigation') }}">Open marine navigation</a><a href="{{ route('vessels.index') }}">Vessels</a><a href="{{ route('tasks.index') }}">Tasks</a><a href="{{ route('maintenance.reminders.index') }}">Reminders</a></nav></div>
+@include('partials.marine-map', ['mapId' => 'dashboard-map', 'large' => false])
+<section class="grid dashboard-cards">
+<article><h2>Weather and hazard status</h2><div data-alert-summary><p>Weather alerts and tsunami-related earthquake flags load on the map from imported official sources.</p></div><p><strong>Important:</strong> A USGS tsunami flag is not an official local evacuation order. Follow emergency authorities and tsunami.gov.</p></article>
+<article><h2>Vessels</h2><p class="metric">{{ $vessels->count() }}</p>@if($vessels->isEmpty())<p>No vessels yet.</p><a class="button" href="{{ route('vessels.create') }}">Add your first vessel</a>@else<ul>@foreach($vessels as $vessel)<li><a href="{{ route('vessels.show',$vessel) }}">{{ $vessel->name }}</a> · {{ $vessel->home_port ?: 'Home port not set' }} · <a href="{{ route('maintenance.reminders.index', ['vessel' => $vessel->id]) }}">View {{ $vessel->open_reminder_count }} open {{ \Illuminate\Support\Str::plural('reminder', $vessel->open_reminder_count) }}</a>@include('partials.vessel-reminder-breakdown', ['vessel' => $vessel])</li>@endforeach</ul>@endif</article>
+<article><h2>Open tasks</h2><p class="metric">{{ $openTasks->count() }}</p>@if($openTasks->isEmpty())<p>No open tasks.</p>@else<ul>@foreach($openTasks as $task)<li>{{ $task->title }} @if($task->due_at)· @include('partials.user-time', ['time' => $task->due_at, 'format' => 'M j, Y g:i a'])@endif</li>@endforeach</ul>@endif<a href="{{ route('tasks.index') }}">Manage tasks</a></article>
+<article><h2>Open maintenance reminders</h2><p class="metric">{{ $openReminderCount }}</p><p>{{ $openReminderCount }} open across active vessels.</p>@include('partials.global-reminder-type-summary', ['counts' => $openReminderCountsByType])<a href="{{ route('maintenance.reminders.index') }}">Open reminder inbox</a></article>
+<article><h2>AIS traffic</h2><p data-ais-status>No AIS feed configured. Marine will not invent surrounding vessel positions.</p><a href="{{ route('profile.sources.index') }}">Configure a licensed source</a></article>
+</section>
+@endsection
+@push('head')<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">@endpush
+@push('scripts')<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><script src="{{ asset('js/marine-map.js') }}"></script>@endpush
